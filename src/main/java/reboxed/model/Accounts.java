@@ -36,10 +36,18 @@ public class Accounts {
 	@Column(nullable = false, unique = true)
 	private String email;
 	
-	@Pattern(regexp = "^[4-0]+[0-9]{9}$", message = "Enter Valid Phone Number")
-	@Size(max = 10, min = 10)
+	@Pattern(regexp = "^[4-9]+[0-9]{9}$", message = "Enter Valid Phone Number")
+	@Size(max = 10, min = 10, message = "Phone Number Must Contain 10 Digits")
 	@Column(nullable = false, unique = true)
 	private String phoneNumber;
+	
+	@Size(max = 16, min = 8, message = "Provide A Password Between 8 And 16")
+	@Pattern(
+		    regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+		    message = "Password must be at least 8 characters and include uppercase, lowercase, number, and special character"
+		)
+	@Column(nullable = false)
+	private String password;
 
 	@OneToMany(mappedBy = "accounts", cascade = CascadeType.ALL)
 	@Column(name = "user_prod")

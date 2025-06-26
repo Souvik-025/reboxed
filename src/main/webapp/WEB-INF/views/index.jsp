@@ -73,6 +73,7 @@
 			<div class="col-md-4 mb-4">
 				<div class="feature-icon">✔️</div>
 				<h4>Quality Assured</h4>
+				<h1>${sessionScope.accounts.email}</h1>
 				<p>Every item is inspected and tested by professionals for peak
 					performance.</p>
 			</div>
