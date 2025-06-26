@@ -1,41 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Message Sent | Reboxed</title>
+    <title>Listing Successful | Reboxed</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .confirmation-box {
+        .success-box {
             max-width: 600px;
-            margin: 100px auto;
-            background: #fff;
+            margin: 80px auto;
+            background-color: #ffffff;
             padding: 40px;
-            text-align: center;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
             border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
         }
-        .confirmation-box h2 {
-            color: #28a745;
-            margin-bottom: 15px;
-        }
-        .confirmation-box p {
-            font-size: 1.1em;
-        }
-        .confirmation-box a {
-            margin-top: 20px;
-            display: inline-block;
-            background-color: #007bff;
-            color: white;
-            padding: 10px 22px;
-            text-decoration: none;
-            border-radius: 6px;
-        }
-        .confirmation-box a:hover {
-            background-color: #0056b3;
+        .success-icon {
+            font-size: 48px;
+            color: #198754;
         }
     </style>
 </head>
@@ -68,11 +52,18 @@
 		</div>
 	</nav>
 
-<div class="confirmation-box">
-    <h2>Message Sent Successfully!</h2>
-    <p>Thank you for contacting Reboxed. We’ve received your message and will get back to you shortly.</p>
-    <a href="index.jsp">Return to Home</a>
+<div class="success-box">
+    <div class="success-icon">✅</div>
+    <h2 class="mt-3">Your product has been listed!</h2>
+    <p class="lead mt-3">Thank you for using Reboxed. Your refurbished product is now live and ready for potential buyers to discover.</p>
+
+    <a href="${pageContext.request.contextPath}/products.jsp" class="btn btn-outline-success mt-4">View Listings</a>
+    <a href="sellproduct" class="btn btn-success mt-2">List Another Product</a>
 </div>
+
+<footer class="text-center mt-5 text-muted">
+    &copy; 2025 Reboxed. All rights reserved.
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

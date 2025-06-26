@@ -34,19 +34,31 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Reboxed</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="products.jsp">Products</a></li>
-                <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+		<div class="container-fluid">
+			<a class="navbar-brand" href="index.jsp">Reboxed</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end"
+				id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link active"
+						href="index.jsp">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="products.jsp">Products</a></li>
+					<c:if test="${empty sessionScope.accounts}">
+						<li class="nav-item"><a class="nav-link" href="register">Register</a></li>
+						<li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+					</c:if>
+					<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+					<c:if test="${not empty sessionScope.accounts}">
+						<li class="nav-item"><a class="nav-link" href="contact">Accounts</a></li>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a></li>
+					</c:if>
+				</ul>
+			</div>
+		</div>
+	</nav>
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -87,4 +99,10 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<footer class="text-center py-4 bg-light text-muted"> &copy;
+		2025 Reboxed. All rights reserved. </footer>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </html>

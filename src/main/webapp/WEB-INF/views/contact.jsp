@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,18 +32,31 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Reboxed</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="products.jsp">Products</a></li>
-                <li class="nav-item"><a class="nav-link" href="register">Register</a></li>
-                <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+		<div class="container-fluid">
+			<a class="navbar-brand" href="index.jsp">Reboxed</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end"
+				id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link active"
+						href="index.jsp">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="products.jsp">Products</a></li>
+					<c:if test="${empty sessionScope.accounts}">
+						<li class="nav-item"><a class="nav-link" href="register">Register</a></li>
+						<li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+					</c:if>
+					<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+					<c:if test="${not empty sessionScope.accounts}">
+						<li class="nav-item"><a class="nav-link" href="contact">Accounts</a></li>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a></li>
+					</c:if>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
 <div class="form-container">
     <h2>Get in Touch</h2>

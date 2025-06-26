@@ -62,7 +62,7 @@
 			<h1>Shop Smart. Shop Sustainable.</h1>
 			<p class="lead">Certified refurbished goods at incredible prices.
 				Reduce waste, save money.</p>
-			<a href="products.jsp" class="btn btn-light btn-lg mt-3">Sell
+			<a href="sellproduct" class="btn btn-light btn-lg mt-3">Sell
 				Products</a> <a href="products.jsp" class="btn btn-light btn-lg mt-3">Buy
 				Products</a>
 		</div>

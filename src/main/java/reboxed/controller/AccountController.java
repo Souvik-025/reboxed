@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import reboxed.model.Accounts;
+import reboxed.model.Products;
 import reboxed.service.AccountService;
+import reboxed.service.ProductService;
 
 @Controller
 @SessionAttributes({"accounts"})
@@ -23,13 +27,17 @@ public class AccountController {
 	@Autowired
 	private AccountService as;
 	
+	@Autowired
+	private ProductService ps;
+	
 	@GetMapping("/")
 	public String home() {
-		return "index";
+		return "/WEB-INF/index";
 	}
 
 	@GetMapping("/register")
-	public String register(Model m) {
+	public String register(Model m, SessionStatus status) {
+		status.setComplete();
 		m.addAttribute("accounts", new Accounts());
 		return "register";
 	}
@@ -55,10 +63,10 @@ public class AccountController {
 	}
 	
 	@GetMapping("/logout")
-	public String logout(HttpSession ses) {
-		ses.removeAttribute("accounts");
+	public String logout(HttpSession ses, SessionStatus status) {
 		ses.invalidate();
-		return "index";
+		status.setComplete();
+		return "redirect:/";
 	}
 	
 	@GetMapping("/contact")
@@ -71,4 +79,23 @@ public class AccountController {
 	public String contactSuc() {
 		return "contactsuccess";
 	}
+	
+	@GetMapping("/sellproduct")
+	public String sellProduct(HttpSession ses, Model m) {
+		if(ses.getAttribute("accounts") == null)
+			return "redirect:/login";
+		m.addAttribute("product", new Products());
+		return "sellproduct";
+	}
+	
+	@PostMapping("/sellproduct")
+	public String sellProductCheck(@Valid @ModelAttribute("product") Products prod, @RequestParam("image") MultipartFile[] files, BindingResult br, HttpSession ses) {
+		if(br.hasErrors())
+			return "sellproduct";
+		ps.saveProduct(prod, files, (Accounts)ses.getAttribute("accounts"));
+		
+		return "prodsuccess";
+	}
+	
+	
 }
